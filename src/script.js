@@ -78,7 +78,7 @@ let mouseX = 0;
 const COMBO_DURATION = 5000;
 const MAX_COMBO_MULTIPLIER = 3;
 const BASE_SCORE = 100;
-const PENALTY_SCORE = 300;
+const PENALTY_SCORE = 100;
 const BALL_MISS_MULTIPLIER_INCREMENT = 0.5;
 
 // Scoring and Combo Variables
