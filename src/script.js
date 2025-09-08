@@ -538,7 +538,7 @@ if (ball.y + BALL_RADIUS >= paddle.y &&
     ball.dx = newSpeed * Math.sin(angle);
     ball.dy = -newSpeed * Math.cos(angle);
 
-    ballScoreMultiplier += 0.2;
+    ballScoreMultiplier += 0.05;
     const finalScore = Math.floor(BASE_SCORE * ballScoreMultiplier);
     score += finalScore;
 
