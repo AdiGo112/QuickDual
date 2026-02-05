@@ -24,15 +24,39 @@ export class Game {
     this.score = 0;
     this.state = STATES.PLAYING;
     this.timer.start(now);
+    this.flappy.reset();
+    this.reflex.reset();
     this.loop.start();
+    this.updateHUD();
+  }
+
+  pause(now) {
+    if (this.state === STATES.PLAYING) {
+      this.state = STATES.PAUSED;
+      this.timer.pause(now);
+    }
+  }
+
+  resume(now) {
+    if (this.state === STATES.PAUSED) {
+      this.state = STATES.PLAYING;
+      this.timer.resume(now);
+    }
+  }
+
+  end() {
+    this.state = STATES.GAME_OVER;
+    this.loop.stop();
   }
 
   update(dt, now) {
     if (this.state !== STATES.PLAYING) return;
 
     this.timer.update(now);
+    this.updateHUD();
+    
     if (this.timer.isOver()) {
-      this.state = STATES.GAME_OVER;
+      this.end();
       return;
     }
 
@@ -47,5 +71,19 @@ export class Game {
 
   addScore(value) {
     this.score = Math.max(0, this.score + value);
+    this.updateHUD();
+  }
+
+  updateHUD() {
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    const timerDisplay = document.getElementById('timerDisplay');
+    
+    if (scoreDisplay) {
+      scoreDisplay.textContent = this.score;
+    }
+    
+    if (timerDisplay) {
+      timerDisplay.textContent = this.timer.getTimeString();
+    }
   }
 }

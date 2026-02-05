@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickQual - Dual Reflex Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Menu Screen -->
+    <div id="menu" class="screen active">
+      <h1>QuickQual</h1>
+      <p class="tagline">Test your multitasking skills!</p>
+      <button id="startBtn" class="btn-primary">Start Game</button>
+      <button id="tutorialBtn" class="btn-secondary">How to Play</button>
+      <button id="leaderboardBtn" class="btn-secondary">Leaderboard</button>
+    </div>
+
+    <!-- Tutorial Screen -->
+    <div id="tutorial" class="screen">
+      <h2>How to Play</h2>
+      <div class="tutorial-content">
+        <div class="tutorial-section">
+          <h3>Left Game: Flappy Bird</h3>
+          <p>Press <strong>SPACE</strong> to make the bird jump</p>
+          <p>Navigate through pipes without hitting them</p>
+          <p>+100 points per pipe passed</p>
+        </div>
+        <div class="tutorial-section">
+          <h3>Right Game: Reflex Ball</h3>
+          <p>Move your <strong>MOUSE</strong> to control the paddle</p>
+          <p>Keep the ball from falling off the bottom</p>
+          <p>-100 points if ball falls</p>
+        </div>
+        <div class="tutorial-section">
+          <h3>Objective</h3>
+          <p>Survive for 2 minutes while managing both games</p>
+          <p>Get the highest score possible!</p>
+        </div>
+      </div>
+      <button id="tutorialBackBtn" class="btn-primary">Back to Menu</button>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game" class="screen">
+      <!-- HUD -->
+      <div id="hud">
+        <div class="hud-item">
+          <span class="hud-label">Score:</span>
+          <span id="scoreDisplay" class="hud-value">0</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Time:</span>
+          <span id="timerDisplay" class="hud-value">2:00</span>
+        </div>
+        <button id="pauseBtn" class="btn-icon">⏸</button>
+      </div>
+
+      <!-- Game Canvases -->
+      <div id="gameArea">
+        <div class="canvas-container">
+          <h3>Flappy Bird</h3>
+          <canvas id="flappyCanvas" width="800" height="600"></canvas>
+          <div class="controls-hint">Press SPACE to jump</div>
+        </div>
+        <div class="canvas-container">
+          <h3>Reflex Ball</h3>
+          <canvas id="reflexCanvas" width="800" height="600"></canvas>
+          <div class="controls-hint">Move mouse to control paddle</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pause Menu -->
+    <div id="pauseMenu" class="screen overlay">
+      <div class="modal">
+        <h2>Paused</h2>
+        <button id="resumeBtn" class="btn-primary">Resume</button>
+        <button id="restartBtn" class="btn-secondary">Restart</button>
+        <button id="quitBtn" class="btn-secondary">Quit to Menu</button>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOver" class="screen overlay">
+      <div class="modal">
+        <h2>Game Over!</h2>
+        <p class="final-score">Final Score: <span id="finalScore">0</span></p>
+        <div id="leaderboardForm">
+          <input type="text" id="playerName" placeholder="Enter your name" maxlength="20">
+          <button id="submitScoreBtn" class="btn-primary">Submit Score</button>
+        </div>
+        <button id="playAgainBtn" class="btn-primary">Play Again</button>
+        <button id="menuBtn" class="btn-secondary">Back to Menu</button>
+      </div>
+    </div>
+
+    <!-- Leaderboard Screen -->
+    <div id="leaderboard" class="screen overlay">
+      <div class="modal leaderboard-modal">
+        <h2>Leaderboard</h2>
+        <div id="leaderboardList" class="leaderboard-list">
+          <p class="loading">Loading scores...</p>
+        </div>
+        <button id="leaderboardCloseBtn" class="btn-primary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

@@ -3,10 +3,19 @@ export class GameLoop {
     this.update = update;
     this.render = render;
     this.last = 0;
+    this.animationId = null;
   }
 
   start() {
-    requestAnimationFrame(this.loop.bind(this));
+    this.last = performance.now();
+    this.animationId = requestAnimationFrame(this.loop.bind(this));
+  }
+
+  stop() {
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+      this.animationId = null;
+    }
   }
 
   loop(ts) {
@@ -16,6 +25,6 @@ export class GameLoop {
     this.update(dt, ts);
     this.render();
 
-    requestAnimationFrame(this.loop.bind(this));
+    this.animationId = requestAnimationFrame(this.loop.bind(this));
   }
 }

@@ -1,5 +1,21 @@
 {
-  "dependencies": {
-    "firebase": "^12.2.1"
-  }
+  "name": "quickqual",
+  "version": "1.0.0",
+  "description": "A dual-window reflex and coordination game combining Flappy Bird and Pong-style gameplay",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "npx serve",
+    "dev": "npx serve"
+  },
+  "keywords": [
+    "game",
+    "javascript",
+    "canvas",
+    "flappy-bird",
+    "reflex",
+    "multitasking"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module"
 }
