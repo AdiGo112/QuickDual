@@ -27,9 +27,15 @@ export class FlappyGame {
     this.pipes.reset();
   }
 
+
   update(dt) {
     this.bird.update();
     this.pipes.update(this.bird);
+
+    // Game-over handling
+    if (this.bird.isDead) {
+      this.reset();
+    }
   }
 
   render() {

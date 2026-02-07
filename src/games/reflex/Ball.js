@@ -66,8 +66,8 @@ export class Ball {
       // Clamp for safety
       const clamped = Math.max(-1, Math.min(1, relativeIntersect));
 
-      // Max bounce angle (75° like Breakout / Pong)
-      const maxAngle = (75 * Math.PI) / 180;
+      // Max bounce angle (60° like Breakout / Pong)
+      const maxAngle = (60 * Math.PI) / 180;
 
       const angle = clamped * maxAngle;
       const speed = REFLEX.BALL_SPEED;

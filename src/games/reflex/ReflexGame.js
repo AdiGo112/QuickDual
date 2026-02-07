@@ -64,8 +64,8 @@ export class ReflexGame {
   render() {
     // Clear canvas with vertical gradient background
     const gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height);
-    gradient.addColorStop(0, "#1a1a2e");
-    gradient.addColorStop(1, "#16213e");
+    gradient.addColorStop(0, "#141427");
+    gradient.addColorStop(1, "#1f3061");
 
     this.ctx.fillStyle = gradient;
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
