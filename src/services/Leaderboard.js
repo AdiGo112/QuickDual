@@ -1,23 +1,10 @@
-import { sql } from './Postgres.js';
+import { LeaderboardAPI } from './LeaderboardAPI.js';
 
 export class Leaderboard {
   constructor(game) {
     this.game = game;
     this.gameOverScreen = document.getElementById("gameOver");
     this.setupEventListeners();
-    this.initializeDatabase();
-  }
-
-  async initializeDatabase() {
-    // Create leaderboard table if it doesn't exist
-    await sql`
-      CREATE TABLE IF NOT EXISTS leaderboard (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR(20) NOT NULL,
-        score INTEGER NOT NULL,
-        time BIGINT NOT NULL
-      )
-    `;
   }
 
   setupEventListeners() {
@@ -66,17 +53,18 @@ export class Leaderboard {
   }
 
   // -------------------------
-  // PostgreSQL replacements
+  // API-based methods
   // -------------------------
 
   async saveScore(name, score) {
     if (name.length > 20) return;
     if (score < 0) return;
 
-    await sql`
-      INSERT INTO leaderboard (name, score, time)
-      VALUES (${name}, ${score}, ${Date.now()})
-    `;
+    try {
+      await LeaderboardAPI.saveScore(name, score);
+    } catch (error) {
+      console.error('Error saving score:', error);
+    }
   }
 
   async load() {
@@ -84,13 +72,9 @@ export class Leaderboard {
     listElement.innerHTML = '<p class="loading">Loading scores...</p>';
 
     try {
-      const rows = await sql`
-        SELECT name, score FROM leaderboard
-        ORDER BY score DESC
-        LIMIT 10
-      `;
+      const rows = await LeaderboardAPI.getScores();
 
-      if (rows.length === 0) {
+      if (!rows || rows.length === 0) {
         listElement.innerHTML =
           '<p class="loading">No scores yet. Be the first!</p>';
         return;

@@ -1,5 +1,2 @@
-import postgres from 'postgres';
-
-const sql = postgres(process.env.DATABASE_URL,  { ssl: 'verify-full' });
-
-export { sql } from '../config/postgresConfig.js';
+// This file is deprecated - use API calls instead
+// See LeaderboardAPI.js for the new implementation
