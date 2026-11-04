@@ -1,5 +1,9 @@
 # QuickDual - Dual Reflex Game
 
+**Play it:** https://adigo112.github.io/QuickDual/
+
+<!-- GIF here -->
+
 A challenging multitasking game that tests your hand-eye coordination, focus, and reaction speed by having you play two games simultaneously!
 
 ## 🎮 Game Description
@@ -84,10 +88,8 @@ Then open your browser to `http://localhost:8000`
 
 ### Option 3: Deploy to GitHub Pages
 
-1. Push this project to a GitHub repository
-2. Go to Settings > Pages
-3. Select the main branch as source
-4. Your game will be available at `https://yourusername.github.io/QuickDual`
+Pushes to `main` deploy automatically via `.github/workflows/pages.yml`.
+The game is live at https://adigo112.github.io/QuickDual/ (the leaderboard needs the Express API in `server.js`, which Pages does not host).
 
 ## 🎨 Features
 
